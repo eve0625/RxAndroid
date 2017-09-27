@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity;
+
 import java.util.Arrays;
 
 import io.reactivex.Observable;
 
-public class LoopActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoopActivity extends RxAppCompatActivity implements View.OnClickListener {
 
     private Button btnLoop1, btnLoop2;
     private TextView tvResult1, tvResult2;
@@ -48,8 +50,9 @@ public class LoopActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             }
             case R.id.btn_loop2: {
-                //rxJava 방식
+                //rxJava 방식 : for문을 Obsevable의 filter와 first 함수로 대체
                 Observable.fromIterable(samples)
+                        .compose(bindToLifecycle()) //lifecycle 관리(activity 종료시 자동으로 Observable 해제)
                         .filter(s -> s.contains(APPLE))
                         .first(NOT_FOUND) //첫번째 값만 반환 (없을 경우 default)
                         .subscribe(result -> tvResult2.setText(result));
