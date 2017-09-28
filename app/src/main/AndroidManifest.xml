@@ -11,10 +11,11 @@
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
         <activity android:name=".HelloRxAndroidActivity" />
-        <activity android:name=".LoopActivity"></activity>
-        <activity android:name=".applist.AppListActivity">
-        </activity>
+        <activity android:name=".LoopActivity" />
+        <activity android:name=".applist.AppListActivity"></activity>
         <activity android:name=".AsyncTaskActivity">
+        </activity>
+        <activity android:name=".TimerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
